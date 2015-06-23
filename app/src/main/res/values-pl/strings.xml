@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="activate_notifications">Aktywuj powiadomienia</string>
+    <string name="all_notifications">Wszystkie powiadomienia</string>
+    <string name="choose_email_client">Wybierz klienta poczty</string>
+    <string name="email_author">Napisz do mnie</string>
+    <string name="get_facebook_feed_description">Dotknij, znajdź swój kanał RSS dla powiadomień, skopiuj jego adres i wklej go powyżej.</string>
+    <string name="interval_pref">Przedział czasu sprawdzania</string>
+    <string name="interval_pref_description">Kanał będzie sprawdzany co %s.</string>
+    <string name="led_color">Kolor diody LED</string>
+    <string name="led_color_description">Dioda będzie migać w kolorze: \u0020%s</string>
+    <string name="led_light">Dioda LED</string>
+    <string name="loading">Ładowanie&#8230;</string>
+    <string name="loading_error">Kanał nie może być wczytany</string>
+    <string name="notification_sound">Dźwięk powiadomienia</string>
+    <string name="notification_sound_description">Wybierz dzwonek lub wycisz: \u0020</string>
+    <string name="notifications_feed_url">Kanał powiadomień</string>
+    <string name="please_configure">Proszę ustawić kanał RSS</string>
+    <string name="preference_category1">Główne</string>
+    <string name="preference_category2">Przykładowe kanały</string>
+    <string name="preference_category3">Powiadomienia</string>
+    <string name="preference_category4">Autor</string>
+    <string name="refresh">Odśwież</string>
+    <string name="settings">Ustawienia</string>
+    <string name="silent">Brak dźwięku</string>
+    <string name="vibrate">Wibruj</string>
+    <string name="zero_items">Brak elementów</string>
+    <string name="get_facebook_feed">Powiadomienia Facebook</string>
+    <string name="new_item">Nowy element kanału</string>
+    <string name="new_items">nowe elementy kanału</string>
+
+    <string-array name="intervalPrefTitles">
+        <item>5 minut</item>
+        <item>15 minut</item>
+        <item>30 minut</item>
+        <item>1 godzina</item>
+        <item>3 godziny</item>
+        <item>6 godzin</item>
+    </string-array>
+
+    <string-array name="colorsNames">
+        <item>biały</item>
+        <item>czerwony</item>
+        <item>zielony</item>
+        <item>niebieski</item>
+        <item>cyan</item>
+        <item>magenta</item>
+    </string-array>
+
+</resources>

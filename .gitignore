@@ -1,0 +1,11 @@
+*.iml
+*.apk
+*.directory
+.gradle
+.idea/
+/local.properties
+.DS_Store
+/build
+/saxrssreader/build
+#/.idea/workspace.xml
+#/.idea/libraries
