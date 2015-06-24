@@ -29,6 +29,7 @@
     <string name="get_facebook_feed">Powiadomienia Facebook</string>
     <string name="new_item">Nowy element kanału</string>
     <string name="new_items">nowe elementy kanału</string>
+    <string name="date_null">Brak daty</string>
 
     <string-array name="intervalPrefTitles">
         <item>5 minut</item>

@@ -34,6 +34,7 @@
     <string name="led_color_description">Current blinking color is %s.</string>
     <string name="new_item">New feed item</string>
     <string name="new_items">new feed items</string>
+    <string name="date_null">No date</string>
 
     <string-array name="intervalPrefTitles">
         <item>5 minutes</item>
