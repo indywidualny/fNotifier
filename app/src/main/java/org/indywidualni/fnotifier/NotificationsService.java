@@ -17,6 +17,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
+import net.grandcentrix.tray.TrayAppPreferences;
+
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -31,6 +33,7 @@ public class NotificationsService extends Service {
     private String feedUrl;
     private int timeInterval;
     private SharedPreferences preferences;
+    private TrayAppPreferences trayPreferences;
     private int itemCounter;
 
     @Override
@@ -42,8 +45,9 @@ public class NotificationsService extends Service {
     public void onCreate() {
         Log.i("NotificationsService", "********** Service created! **********");
 
-        // get shared preferences
+        // get shared preferences (for a multi process app) and TrayPreferences
         preferences = getSharedPreferences(getApplicationContext().getPackageName() + "_preferences", Context.MODE_MULTI_PROCESS);
+        trayPreferences = new TrayAppPreferences(getApplicationContext());
 
         handler = new Handler();
         runnable = new Runnable() {
@@ -111,16 +115,16 @@ public class NotificationsService extends Service {
              *  of avoiding it, it's a nice example how it will work in the future.
              */
 
-            // get the last PubDate (String) from shared prefs
-            final String savedDate = preferences.getString("saved_date", "nothing");
+            // get the last PubDate (String) from TrayPreferences
+            final String savedDate = trayPreferences.getString("saved_date", "nothing");
 
             // if the saved PubDate is different than the new one it means there is new notification
             try {
                 if (!result.get(0).getPubDate().toString().equals(savedDate))
-                        notifier(result.get(0).getTitle(), result.get(0).getDescription(), result.get(0).getLink());
+                    notifier(result.get(0).getTitle(), result.get(0).getDescription(), result.get(0).getLink());
 
-                // save the latest PubDate to shared prefs
-                preferences.edit().putString("saved_date", result.get(0).getPubDate().toString()).apply();
+                // save the latest PubDate (as a String) to TrayPreferences
+                trayPreferences.put("saved_date", result.get(0).getPubDate().toString());
 
                 // log success
                 Log.i("RssReaderTask", "********** onPostExecute: Aight biatch ;)");
