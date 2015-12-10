@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.indywidualni.fnotifier"
     android:installLocation="internalOnly" >
 
@@ -10,10 +12,12 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:fullBackupContent="false"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <receiver
             android:name=".BootCompletedIntentReceiver"
             android:enabled="true"
@@ -22,6 +26,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".PackageReplacedIntentReceiver"
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
                 <data android:scheme="package" android:path="org.indywidualni.fnotifier" />
@@ -49,7 +57,8 @@
             android:label="@string/settings"
             android:parentActivityName=".MainActivity"
             android:configChanges="screenSize|orientation"
-            android:theme="@style/AppPreferences" >
+            android:theme="@style/AppPreferences"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.indywidualni.fnotifier.MainActivity" />

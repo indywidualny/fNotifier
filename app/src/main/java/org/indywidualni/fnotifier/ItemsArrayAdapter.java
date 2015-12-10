@@ -31,12 +31,15 @@ public class ItemsArrayAdapter extends ArrayAdapter<RssItem> {
         TextView id = (TextView) convertView.findViewById(R.id.id);
 
         title.setText(item.getTitle());
+
         try {
             date.setText(DateFormat.getDateTimeInstance().format(item.getPubDate()));
         } catch (Exception ex) {
             date.setText(getContext().getString(R.string.date_null));
         }
-        id.setText("#" + String.format("%02d", position + 1));
+
+        String formattedId = "#" + String.format("%02d", position + 1);
+        id.setText(formattedId);
 
         return convertView;
     }

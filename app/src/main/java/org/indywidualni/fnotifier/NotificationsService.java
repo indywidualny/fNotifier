@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,7 +31,6 @@ public class NotificationsService extends Service {
     private static Runnable runnable = null;
     private String feedUrl;
     private int timeInterval;
-    private SharedPreferences preferences;
     private TrayAppPreferences trayPreferences;
     private int itemCounter;
 
@@ -45,16 +43,15 @@ public class NotificationsService extends Service {
     public void onCreate() {
         Log.i("NotificationsService", "********** Service created! **********");
 
-        // get shared preferences (for a multi process app) and TrayPreferences
-        preferences = getSharedPreferences(getApplicationContext().getPackageName() + "_preferences", Context.MODE_MULTI_PROCESS);
+        // get TrayPreferences
         trayPreferences = new TrayAppPreferences(getApplicationContext());
 
         handler = new Handler();
         runnable = new Runnable() {
             public void run() {
                 // get the url and time interval from shared prefs
-                feedUrl = preferences.getString("feed_url", "");
-                timeInterval = Integer.parseInt(preferences.getString("interval_pref", "1800000"));
+                feedUrl = trayPreferences.getString("feed_url", "");
+                timeInterval = trayPreferences.getInt("interval_pref", 1800000);
                 Log.i("NotificationsService", "Feed URL: " + feedUrl);
                 Log.i("NotificationsService", "Time interval: " + timeInterval + " ms");
 
@@ -149,7 +146,7 @@ public class NotificationsService extends Service {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(title))
-                        .setSmallIcon(R.drawable.ic_stat_f)
+                        .setSmallIcon(R.mipmap.ic_stat_f)
                         .setContentTitle(contentTitle)
                         .setContentText(title)
                         .setTicker(title)
@@ -167,33 +164,34 @@ public class NotificationsService extends Service {
         mBuilder.addAction(0, getString(R.string.all_notifications), piAllNotifications);
 
         // notification sound
-        Uri ringtoneUri = Uri.parse(preferences.getString("ringtone", "content://settings/system/notification_sound"));
+        Uri ringtoneUri = Uri.parse(trayPreferences.getString("ringtone", "content://settings/system/notification_sound"));
         mBuilder.setSound(ringtoneUri);
 
         // vibration
-        if (preferences.getBoolean("vibrate", false))
+        if (trayPreferences.getBoolean("vibrate", false))
             mBuilder.setVibrate(new long[] {500, 500});
 
         // LED light
-        if (preferences.getBoolean("led_light", false)) {
-            //noinspection ConstantConditions
-            switch (preferences.getString("led_color", "white")) {
-                case "white":
+        if (trayPreferences.getBoolean("led_light", false)) {
+            // colors are now saved as integers
+            // there is also Enum to identify them
+            switch (trayPreferences.getInt("led_color", 0)) {
+                case 0:
                     mBuilder.setLights(Color.WHITE, 1, 1);
                     break;
-                case "red":
+                case 1:
                     mBuilder.setLights(Color.RED, 1, 1);
                     break;
-                case "green":
+                case 2:
                     mBuilder.setLights(Color.GREEN, 1, 1);
                     break;
-                case "blue":
+                case 3:
                     mBuilder.setLights(Color.BLUE, 1, 1);
                     break;
-                case "cyan":
+                case 4:
                     mBuilder.setLights(Color.CYAN, 1, 1);
                     break;
-                case "magenta":
+                case 5:
                     mBuilder.setLights(Color.MAGENTA, 1, 1);
                     break;
             }

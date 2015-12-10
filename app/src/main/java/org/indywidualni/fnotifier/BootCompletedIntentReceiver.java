@@ -12,7 +12,7 @@ public class BootCompletedIntentReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.i("BroadcastReceiver", "********** Boot time or upgrade! **********");
+        Log.i("BroadcastReceiver", "********** Boot time! **********");
         context = MyApplication.getContextOfApplication();
 
         Intent startIntent = new Intent(context, NotificationsService.class);

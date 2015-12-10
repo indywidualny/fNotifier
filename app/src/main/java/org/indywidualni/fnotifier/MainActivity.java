@@ -9,8 +9,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -27,7 +28,7 @@ import nl.matshofman.saxrssreader.RssFeed;
 import nl.matshofman.saxrssreader.RssItem;
 import nl.matshofman.saxrssreader.RssReader;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private SwipeRefreshLayout pullToRefresh;
@@ -75,7 +76,7 @@ public class MainActivity extends ActionBarActivity {
 
         // swipe refresh layout
         pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
-        pullToRefresh.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        pullToRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary));
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -132,15 +133,14 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
+        switch (item.getItemId()) {
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.email_me:
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "koras@indywidualni.org", null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "\n\n--" + Miscellany.getDeviceInfo(this));
                 startActivity(Intent.createChooser(emailIntent, getString(R.string.choose_email_client)));
                 return true;
             case R.id.google_play:
@@ -149,7 +149,6 @@ public class MainActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     private class RssReaderTask extends AsyncTask<String, Void, ArrayList<RssItem>> {

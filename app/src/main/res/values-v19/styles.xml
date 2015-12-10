@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
 
     <!-- Base application theme. -->
@@ -21,15 +23,6 @@
         <item name="android:windowBackground">@drawable/window_background</item>
 
 <!--        <item name="android:alertDialogTheme">@style/CustomDialogTheme</item>-->
-    </style>
-
-    <style name="CustomDialogTheme" parent="Base.Theme.AppCompat.Light.Dialog.FixedSize">
-        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
 </resources>
