@@ -34,7 +34,7 @@ public class ItemsArrayAdapter extends ArrayAdapter<RssItem> {
 
         try {
             date.setText(DateFormat.getDateTimeInstance().format(item.getPubDate()));
-        } catch (Exception ex) {
+        } catch (Exception ex) {  // NullPointerException but let's do an ugly thing just in case
             date.setText(getContext().getString(R.string.date_null));
         }
 
