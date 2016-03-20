@@ -30,7 +30,8 @@ public class ItemsArrayAdapter extends ArrayAdapter<RssItem> {
         TextView date = (TextView) convertView.findViewById(R.id.date);
         TextView id = (TextView) convertView.findViewById(R.id.id);
 
-        title.setText(item.getTitle());
+        if (item.getTitle() != null)
+            title.setText(item.getTitle());
 
         try {
             date.setText(DateFormat.getDateTimeInstance().format(item.getPubDate()));

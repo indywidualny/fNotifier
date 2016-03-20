@@ -125,8 +125,8 @@ public class NotificationsService extends Service {
 
                 // log success
                 Log.i("RssReaderTask", "********** onPostExecute: Aight biatch ;)");
-            } catch (NullPointerException ex) {
-                Log.i("RssReaderTask", "********** onPostExecute: NullPointerException!");
+            } catch (Exception ex) {
+                Log.i("RssReaderTask", "********** onPostExecute: Exception!");
             }
         }
 
