@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
 
     <string name="app_name" translatable="false">fNotifier</string>
@@ -22,9 +21,6 @@
     <string name="interval_pref">Time interval for checking</string>
     <string name="interval_pref_description">Feed will be checked every %s.</string>
     <string name="activate_notifications">Activate notifications</string>
-    <string name="get_facebook_feed">Facebook notifications</string>
-    <string name="get_facebook_feed_description">Click the field, find your unique notifications RSS, copy its address and paste it above.</string>
-    <string name="get_facebook_feed_link" translatable="false">https://goo.gl/t3vJ33</string>
     <string name="all_notifications">All notifications</string>
     <string name="notification_sound">Notification sound</string>
     <string name="notification_sound_description">Choose a ringtone or silence: \u0020</string>

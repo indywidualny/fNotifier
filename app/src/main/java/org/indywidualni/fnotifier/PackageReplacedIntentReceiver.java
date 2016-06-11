@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import net.grandcentrix.tray.TrayAppPreferences;
+import net.grandcentrix.tray.AppPreferences;
 
 public class PackageReplacedIntentReceiver extends BroadcastReceiver {
 
@@ -19,7 +19,7 @@ public class PackageReplacedIntentReceiver extends BroadcastReceiver {
 
         // get Shared Preferences and Tray Preferences
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        TrayAppPreferences trayPreferences = new TrayAppPreferences(context);
+        AppPreferences trayPreferences = new AppPreferences(context);
 
         /** App upgrade, the important part:
          *  Rewrite all the Shared Preferences used in NotificationsService into Tray Preferences

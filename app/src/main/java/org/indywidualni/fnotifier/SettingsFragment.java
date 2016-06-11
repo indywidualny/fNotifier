@@ -7,18 +7,17 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.util.Log;
 
-import net.grandcentrix.tray.TrayAppPreferences;
+import net.grandcentrix.tray.AppPreferences;
 
 public class SettingsFragment extends PreferenceFragment {
 
     private static Context context;
-    private TrayAppPreferences trayPreferences;
+    private AppPreferences trayPreferences;
     private SharedPreferences preferences;
     private SharedPreferences.OnSharedPreferenceChangeListener prefChangeListener;
 
@@ -30,7 +29,7 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.preferences);
 
         context = MyApplication.getContextOfApplication();
-        trayPreferences = new TrayAppPreferences(context);
+        trayPreferences = new AppPreferences(context);
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // listener for changing preferences (works after the value change)
@@ -85,17 +84,6 @@ public class SettingsFragment extends PreferenceFragment {
                 Log.v("SharedPreferenceChange", key + " changed in SettingsFragment");
             }
         };
-
-
-        // listener for get_feed preference
-        findPreference("get_facebook_feed").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                Log.v("SettingsFragment", "get_facebook_feed clicked");
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.get_facebook_feed_link))));
-                return true;
-            }
-        });
 
     }
 

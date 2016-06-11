@@ -16,7 +16,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
-import net.grandcentrix.tray.TrayAppPreferences;
+import net.grandcentrix.tray.AppPreferences;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class NotificationsService extends Service {
     private static Runnable runnable = null;
     private String feedUrl;
     private int timeInterval;
-    private TrayAppPreferences trayPreferences;
+    private AppPreferences trayPreferences;
     private int itemCounter;
 
     @Override
@@ -44,7 +44,7 @@ public class NotificationsService extends Service {
         Log.i("NotificationsService", "********** Service created! **********");
 
         // get TrayPreferences
-        trayPreferences = new TrayAppPreferences(getApplicationContext());
+        trayPreferences = new AppPreferences(getApplicationContext());
 
         handler = new Handler();
         runnable = new Runnable() {

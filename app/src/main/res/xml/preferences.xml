@@ -21,15 +21,10 @@
     </PreferenceCategory>
 
 
-    <PreferenceCategory
+<!--    <PreferenceCategory
         android:title="@string/preference_category2">
 
-        <Preference
-            android:key="get_facebook_feed"
-            android:title="@string/get_facebook_feed"
-            android:summary="@string/get_facebook_feed_description"/>
-
-    </PreferenceCategory>
+    </PreferenceCategory>-->
 
 
     <PreferenceCategory

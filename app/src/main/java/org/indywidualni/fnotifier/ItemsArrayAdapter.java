@@ -1,5 +1,6 @@
 package org.indywidualni.fnotifier;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class ItemsArrayAdapter extends ArrayAdapter<RssItem> {
             date.setText(getContext().getString(R.string.date_null));
         }
 
-        String formattedId = "#" + String.format("%02d", position + 1);
+        @SuppressLint("DefaultLocale") String formattedId = "#" + String.format("%02d", position + 1);
         id.setText(formattedId);
 
         return convertView;
